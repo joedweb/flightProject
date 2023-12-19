@@ -1,27 +1,28 @@
-import java.time.LocalDateTime;
+import java.sql.Date;
+
+
 
 public class Flight {
 
     // main
     private int flightNum;
 
+    private Date dateTime;
     private String airport;
-
-    private LocalDateTime dateTime;
 
     private String destination;
 
     private String departure;
 
-
-    // constructor
-    public Flight(int flightNum, String airport, LocalDateTime dateTime, String destination, String departure) {
+    public Flight(int flightNum, Date dateTime, String airport, String destination, String departure) {
         this.flightNum = flightNum;
-        this.airport = airport;
         this.dateTime = dateTime;
+        this.airport = airport;
         this.destination = destination;
         this.departure = departure;
     }
+// constructor
+
 
     // S/G
     public int getFlightNum() {
@@ -40,11 +41,11 @@ public class Flight {
         this.airport = airport;
     }
 
-    public LocalDateTime getDateTime() {
+    public Date getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
 

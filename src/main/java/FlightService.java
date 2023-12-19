@@ -3,10 +3,6 @@ import java.util.List;
 
 public interface FlightService {
 
-    // display flights
-    // buy flight
-
-
     void addflight(Flight flight);
 
     void updateFlight(Flight flight);
@@ -15,7 +11,6 @@ public interface FlightService {
 
     Flight getFlightByID(int flightNum);       //read one book
 
-    Flight getFlightByDay(LocalDateTime dateTime);
 
     List<Flight> getAllFlights();
 
