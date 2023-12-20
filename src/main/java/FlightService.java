@@ -9,7 +9,7 @@ public interface FlightService {
 
     void cancelFlight(int flightNum);       //deleting
 
-    Flight getFlightByID(int flightNum);       //read one book
+    Flight getFlightByNum(int flightNum);       //read one book
 
 
     List<Flight> getAllFlights();

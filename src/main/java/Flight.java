@@ -1,5 +1,4 @@
-import java.sql.Date;
-
+import java.time.LocalDateTime;
 
 
 public class Flight {
@@ -7,14 +6,14 @@ public class Flight {
     // main
     private int flightNum;
 
-    private Date dateTime;
+    private String dateTime;
     private String airport;
 
     private String destination;
 
     private String departure;
 
-    public Flight(int flightNum, Date dateTime, String airport, String destination, String departure) {
+    public Flight(int flightNum, String dateTime, String airport, String destination, String departure) {
         this.flightNum = flightNum;
         this.dateTime = dateTime;
         this.airport = airport;
@@ -41,11 +40,11 @@ public class Flight {
         this.airport = airport;
     }
 
-    public Date getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Date dateTime) {
+    public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 

@@ -17,9 +17,9 @@ public class FlightServiceImpl implements FlightService{
 
     @Override
     public void addflight(Flight flight) {
-        try(PreparedStatement statement = connection.prepareStatement(" INSERT INTO flights (flightnum, dateandtime, airport, destination, departure) VALUES (?,?,?,?,?")){
+        try(PreparedStatement statement = connection.prepareStatement("INSERT INTO flights (flightnum, dateandtime, airport, destination, departure) VALUES (?,?,?,?,?)")){
             statement.setInt(1,flight.getFlightNum());
-            statement.setDate(2, flight.getDateTime());            //?
+            statement.setString(2, flight.getDateTime());            //?
             statement.setString(3,flight.getAirport());
             statement.setString(4,flight.getDestination());
             statement.setString(5,flight.getDeparture());
@@ -37,7 +37,7 @@ public class FlightServiceImpl implements FlightService{
 
         try(PreparedStatement statement = connection.prepareStatement("UPDATE flights dateandtime = ?, airport = ?, destination =?, departure=? WHERE flight flightNum=?")){
             statement.setInt(1,flight.getFlightNum());
-            statement.setDate(2, flight.getDateTime());             //?
+            statement.setString(2, flight.getDateTime());             //?
             statement.setString(3,flight.getAirport());
             statement.setString(4,flight.getDestination());
             statement.setString(5,flight.getDeparture());
@@ -51,7 +51,7 @@ public class FlightServiceImpl implements FlightService{
 
     @Override
     public void cancelFlight(int flightNum) {
-        try (PreparedStatement statement = connection.prepareStatement("DELETE FROM flights flightNum=?")) {
+        try (PreparedStatement statement = connection.prepareStatement("DELETE FROM flights WHERE flightNum=?")) {
             statement.setInt(1, flightNum);
 
             statement.executeUpdate();
@@ -61,7 +61,7 @@ public class FlightServiceImpl implements FlightService{
     }
 
     @Override
-    public Flight getFlightByID(int flightNum) {
+    public Flight getFlightByNum(int flightNum) {
 
         Flight flight = null;
 
@@ -72,12 +72,12 @@ public class FlightServiceImpl implements FlightService{
             try(ResultSet rs = statement.executeQuery()){
                 while(rs.next()){
                     int flightN = rs.getInt("flightNum");
-                    Date date = rs.getDate("dateandtime");
+                    String date = rs.getString("dateandtime");
                     String airport = rs.getString("airport");
                     String destination = rs.getString("destination");
                     String departure = rs.getString("departure");
 
-                    flight = new Flight(flightN, (java.sql.Date) date, airport,destination,departure);
+                    flight = new Flight(flightN,date, airport,destination,departure);
                 }
             }
         }catch(SQLException e){
@@ -92,18 +92,18 @@ public class FlightServiceImpl implements FlightService{
 
         List<Flight> flights = new ArrayList<>();
 
-        try(PreparedStatement statement = connection.prepareStatement("SELECT * FROM flights WHERE flightNum=?")){
+        try(PreparedStatement statement = connection.prepareStatement("SELECT * FROM flights")){
 
 
             try(ResultSet rs = statement.executeQuery()){
                 while(rs.next()){
                     int flightN = rs.getInt("flightNum");
-                    Date date = rs.getDate("dateandtime");       //?
+                    String date = rs.getString("dateandtime");       //?
                     String airport = rs.getString("airport");
                     String destination = rs.getString("destination");
                     String departure = rs.getString("departure");
 
-                    Flight flight = new Flight(flightN, (java.sql.Date) date, airport,destination,departure);
+                    Flight flight = new Flight(flightN,date, airport,destination,departure);
                     flights.add(flight);
                 }
             }
