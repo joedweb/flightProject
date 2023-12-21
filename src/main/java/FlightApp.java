@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class FlightApp {
     private static FlightService flightService = new FlightServiceImpl(JDBConnection.getConnection());
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args){
 
         Scanner sc = new Scanner(System.in);
 
@@ -118,7 +118,7 @@ public class FlightApp {
         else{
             System.out.println("Enter your new flight (press enter to skip item)");
             System.out.println("Date and Time: ");
-            String dateandtime = sc.nextLine();
+            String datetime = sc.nextLine();
             System.out.println("Airport: ");
             String airport = sc.nextLine();
             System.out.println("Departure: ");
@@ -127,16 +127,17 @@ public class FlightApp {
             String destination = sc.nextLine();
 
             flight.setAirport(airport.isEmpty()?flight.getAirport(): airport);
-            flight.setDateTime(dateandtime.isEmpty()?flight.getDateTime(): airport);
+            flight.setDateTime(datetime.isEmpty()?flight.getDateTime(): datetime);
             flight.setDeparture(departure.isEmpty()? flight.getDeparture(): departure);
             flight.setDestination(destination.isEmpty()? flight.getDestination(): destination);
 
-            System.out.println("Flight updated succesfully!");
+            flightService.updateFlight(flight);
+
+            System.out.println("Flight updated successfully!");
         }
-        
     }
 
-    private static void addflight(Scanner sc) throws ParseException {
+    private static void addflight(Scanner sc)  {
         System.out.println("Please enter the new flight details: ");
         System.out.println("Flight Number: ");
         int flightNum = sc.nextInt();

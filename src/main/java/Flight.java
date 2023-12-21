@@ -22,7 +22,6 @@ public class Flight {
     }
 // constructor
 
-
     // S/G
     public int getFlightNum() {
         return flightNum;

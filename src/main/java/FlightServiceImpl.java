@@ -35,12 +35,12 @@ public class FlightServiceImpl implements FlightService{
     @Override
     public void updateFlight(Flight flight) {
 
-        try(PreparedStatement statement = connection.prepareStatement("UPDATE flights dateandtime = ?, airport = ?, destination =?, departure=? WHERE flight flightNum=?")){
-            statement.setInt(1,flight.getFlightNum());
-            statement.setString(2, flight.getDateTime());             //?
-            statement.setString(3,flight.getAirport());
-            statement.setString(4,flight.getDestination());
-            statement.setString(5,flight.getDeparture());
+        try(PreparedStatement statement = connection.prepareStatement("UPDATE flights SET dateandtime=?, airport=?, destination=?, departure=? WHERE flightNum=?")){
+            statement.setInt(5,flight.getFlightNum());
+            statement.setString(1, flight.getDateTime());             //?
+            statement.setString(2,flight.getAirport());
+            statement.setString(3,flight.getDestination());
+            statement.setString(4,flight.getDeparture());
 
             statement.executeUpdate();
 
