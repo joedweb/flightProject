@@ -1,10 +1,7 @@
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.Date;
+
 import java.util.Scanner;
 
 
@@ -143,7 +140,7 @@ public class FlightApp {
         int flightNum = sc.nextInt();
         sc.nextLine();
 
-        System.out.println("Date and Time: (MM/DD/YYYY HH:MM)");             //!!
+        System.out.println("Date and Time: (MMM/DD/YYYY HH:MM)");             //!!
         String flightDT = sc.nextLine();                                         //!!
 
         System.out.println("Airport: ");

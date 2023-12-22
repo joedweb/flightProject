@@ -15,6 +15,7 @@ public class FlightServiceImpl implements FlightService{
         this.connection = connection;
     }
 
+    // Add a flight to the flights table
     @Override
     public void addflight(Flight flight) {
         try(PreparedStatement statement = connection.prepareStatement("INSERT INTO flights (flightnum, dateandtime, airport, destination, departure) VALUES (?,?,?,?,?)")){
@@ -32,6 +33,7 @@ public class FlightServiceImpl implements FlightService{
 
     }
 
+    // Update a flight from the flights table
     @Override
     public void updateFlight(Flight flight) {
 
@@ -49,6 +51,7 @@ public class FlightServiceImpl implements FlightService{
         }
     }
 
+    // Cancel a flight from the flights table
     @Override
     public void cancelFlight(int flightNum) {
         try (PreparedStatement statement = connection.prepareStatement("DELETE FROM flights WHERE flightNum=?")) {
@@ -60,6 +63,7 @@ public class FlightServiceImpl implements FlightService{
         }
     }
 
+    // get a flight from the  flights table by its flight number
     @Override
     public Flight getFlightByNum(int flightNum) {
 
@@ -87,6 +91,7 @@ public class FlightServiceImpl implements FlightService{
         return flight;
     }
 
+    // return all the flights from the flights table
     @Override
     public List<Flight> getAllFlights() {
 
